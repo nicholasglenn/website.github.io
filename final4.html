@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BASARNAS Control Panel</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header {
+    width: 100%;
+    background-color: #004225; /* Darker green for contrast */
+    color: white;
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+
+  .logo {
+    height: 75px;
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start; /* Align items to the start to prevent vertical stretching */
+    margin-top: 20px; /* Added margin to the top */
+  }
+
+  .video-stream {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+
+  #webcam {
+    width: 640px;
+    height: 480px;
+    border-radius: 8px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 200px; /* Increase margin-top to move the buttons down */
+  }
+
+  .control-button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    color: white;
+  }
+
+  .stop-button {
+    background-color: #bf2f2f;
+  }
+
+  .continue-button {
+    background-color: #4caf50;
+  }
+
+</style>
+</head>
+<body>
+<header class="header">
+  <img src="Basarnas_Logo.png" alt="BASARNAS Logo" class="logo">
+  <h1>BASARNAS CONTROL PANEL</h1>
+</header>
+
+<div class="main-content">
+  <div class="video-stream">
+    <video id="webcam" autoplay playsinline></video>
+  </div>
+
+  <div class="controls">
+    <button class="control-button stop-button" onclick="stopRobot()">Stop Movement</button>
+    <button class="control-button continue-button" onclick="continueRobot()">Continue Movement</button>
+  </div>
+</div>
+
+<script>
+  function stopRobot() {
+    alert('Robot Has Been Stopped'); // Change the notification to an alert
+  }
+
+  function continueRobot() {
+    alert('Robot is Continuing Movement'); // Change the notification to an alert
+  }
+
+  const videoElement = document.getElementById('webcam');
+  if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function (stream) {
+        videoElement.srcObject = stream;
+      })
+      .catch(function (err) {
+        console.log("Something went wrong!", err);
+      });
+  }
+</script>
+
+</body>
+</html>
